@@ -1,0 +1,17 @@
+# Dados da Olist — baixar do Kaggle
+olist_*.csv
+olist_*.zip
+
+# Arquivo de sentimento — gerado no Colab
+sentiment_features.csv
+
+# Arquivos gerados pelo pipeline
+df_base_features.csv
+df_elegivel.csv
+items_cache.csv
+graficos_tcc_v2.png
+
+# Arquivos de sistema
+.DS_Store
+__pycache__/
+*.pyc
