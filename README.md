@@ -7,6 +7,32 @@
 
 ---
 
+## ⚠️ Dados necessários — baixar antes de executar
+
+**Os arquivos de dados NÃO estão incluídos neste repositório.**
+
+Antes de executar qualquer script, você precisa:
+
+**1. Baixar a base Olist do Kaggle:**
+https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+
+Descompacte o ZIP e coloque os 7 arquivos CSV na mesma pasta dos scripts:
+- `olist_orders_dataset.csv`
+- `olist_customers_dataset.csv`
+- `olist_order_payments_dataset.csv`
+- `olist_order_reviews_dataset.csv`
+- `olist_order_items_dataset.csv`
+- `olist_products_dataset.csv`
+- `olist_product_category_name_translation.csv`
+
+**2. Gerar o arquivo de sentimento no Google Colab:**
+
+Execute o script `sentiment_analysis_colab.py` no Google Colab com GPU ativa (Runtime → Alterar tipo de ambiente de execução → GPU T4). Ao final, baixe o arquivo `sentiment_features.csv` gerado e coloque-o na mesma pasta dos scripts.
+
+Só então execute o pipeline principal.
+
+---
+
 ## Sobre o projeto
 
 Este repositório contém o código desenvolvido para o Trabalho de Conclusão de Curso do MBA em Data Science e Analytics da USP/Esalq.
@@ -17,26 +43,17 @@ O trabalho investiga a possibilidade de prever o comportamento de recompra de cl
 
 ---
 
-## Base de dados
-
-**Brazilian E-Commerce Public Dataset by Olist**
-Disponível em: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
-
-~100 mil pedidos realizados entre 2016 e 2018 por consumidores brasileiros.
-Faça o download e coloque os arquivos CSV na mesma pasta dos scripts antes de executar.
-
----
-
 ## Estrutura do repositório
 
 ```
 tcc_recompra_olist/
 │
-├── tcc_completo_comentado.py       # Pipeline principal — execução completa do projeto
-├── sentiment_analysis_colab.py     # Análise de sentimento via BERTimbau (Google Colab + GPU)
-├── teste_variaveis_candidatas.py   # Teste de poder preditivo de variáveis descartadas
-├── teste_valor_primeira_compra.py  # Análise da relação valor da compra x recompra
-└── README.md                       # Este arquivo
+├── tcc_completo_comentado.py        # Pipeline principal — execução completa
+├── sentiment_analysis_colab.py      # Análise de sentimento via BERTimbau (Colab + GPU)
+├── teste_variaveis_candidatas.py    # Teste de variáveis descartadas (frete, postagem)
+├── teste_valor_primeira_compra.py   # Análise da relação valor da compra x recompra
+├── .gitignore                       # Arquivos excluídos do repositório
+└── README.md                        # Este arquivo
 ```
 
 ---
@@ -49,24 +66,26 @@ tcc_recompra_olist/
 pip install pandas scikit-learn xgboost lightgbm optuna shap matplotlib
 ```
 
-### Execução principal
+### Passo a passo
 
-1. Baixe os arquivos CSV da Olist no Kaggle
-2. Execute o script de análise de sentimento no Google Colab (`sentiment_analysis_colab.py`) para gerar o arquivo `sentiment_features.csv`
-3. Coloque todos os CSVs e o `sentiment_features.csv` na mesma pasta que os scripts
+1. Baixe os CSVs da Olist no Kaggle (link acima)
+2. Execute `sentiment_analysis_colab.py` no Google Colab para gerar `sentiment_features.csv`
+3. Coloque todos os CSVs e o `sentiment_features.csv` na mesma pasta dos scripts
 4. Execute o pipeline principal:
 
 ```bash
 python tcc_completo_comentado.py
 ```
 
-### Arquivos gerados
+O script leva entre 15 e 25 minutos — a maior parte do tempo é a otimização de hiperparâmetros (Optuna, 50 trials por modelo).
+
+### Arquivos gerados automaticamente
 
 | Arquivo | Descrição |
 |---|---|
 | `df_base_features.csv` | Base de dados final com todas as features |
-| `df_elegivel.csv` | Pedidos dos clientes elegíveis |
-| `items_cache.csv` | Cache da tabela de itens |
+| `df_elegivel.csv` | Pedidos dos clientes elegíveis (uso nos scripts de teste) |
+| `items_cache.csv` | Cache da tabela de itens (uso nos scripts de teste) |
 | `graficos_tcc_v2.png` | Curva ROC, Curva PR e importância SHAP |
 
 ---
@@ -93,7 +112,7 @@ python tcc_completo_comentado.py
 | `atraso_medio` | Logística | Diferença entre prazo prometido e entrega real (dias) |
 | `flag_atraso` | Logística | 1 se houve atraso na entrega, 0 caso contrário |
 | `customer_state` | Geográfica | Estado do cliente na primeira compra |
-| `review_score_primeira` | Textual | Nota da avaliação da primeira compra (1-5) |
+| `review_score_primeira` | Textual | Nota da avaliação da primeira compra (1 a 5) |
 | `sentimento_num` | Textual | Sentimento da avaliação (1=positivo, 0=neutro, -1=negativo) |
 | `produto_duravel` | Produto | 1=durável (ciclo longo), 0=não-durável (ciclo curto) |
 
@@ -101,6 +120,6 @@ python tcc_completo_comentado.py
 
 ## Observações
 
-- O script `sentiment_analysis_colab.py` deve ser executado no **Google Colab com GPU ativa** (Runtime → Alterar tipo de ambiente de execução → GPU T4)
-- O pipeline principal (`tcc_completo_comentado.py`) leva entre 15 e 25 minutos para concluir, sendo a maior parte do tempo consumida pela otimização de hiperparâmetros (Optuna, 50 trials por modelo)
-- Os scripts de teste (`teste_variaveis_candidatas.py` e `teste_valor_primeira_compra.py`) requerem que o pipeline principal tenha sido executado previamente, ou que os arquivos `df_elegivel.csv`, `items_cache.csv` e `df_base_features.csv` estejam disponíveis na pasta de trabalho
+- O script `sentiment_analysis_colab.py` **deve ser executado no Google Colab com GPU ativa** — não no ambiente local
+- Os scripts de teste requerem que o pipeline principal tenha rodado primeiro, ou que os arquivos `df_elegivel.csv`, `items_cache.csv` e `df_base_features.csv` estejam disponíveis na pasta
+- Os CSVs da Olist e os arquivos gerados estão no `.gitignore` e não são versionados
