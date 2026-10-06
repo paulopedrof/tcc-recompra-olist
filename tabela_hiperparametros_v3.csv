@@ -1,0 +1,20 @@
+Modelo,Hiperparâmetro,Espaço de busca,Valor selecionado
+Random Forest,n_estimators,200 a 500,275.0
+Random Forest,max_depth,4 a 20,13.0
+Random Forest,min_samples_leaf,1 a 40 (escala log),3.0
+Random Forest,max_features,0.3 a 1.0,0.5127
+XGBoost,n_estimators,100 a 800,356.0
+XGBoost,max_depth,3 a 9,3.0
+XGBoost,learning_rate,0.01 a 0.3 (escala log),0.0102
+XGBoost,subsample,0.6 a 1.0,0.7355
+XGBoost,colsample_bytree,0.6 a 1.0,0.8319
+XGBoost,min_child_weight,1 a 20,8.0
+XGBoost,reg_lambda,0.01 a 10.0 (escala log),2.0538
+LightGBM,n_estimators,100 a 800,763.0
+LightGBM,max_depth,3 a 10,3.0
+LightGBM,num_leaves,15 a 127,64.0
+LightGBM,learning_rate,0.01 a 0.3 (escala log),0.0108
+LightGBM,subsample,0.6 a 1.0,0.9893
+LightGBM,colsample_bytree,0.6 a 1.0,0.8274
+LightGBM,min_child_samples,10 a 100,99.0
+LightGBM,reg_lambda,0.01 a 10.0 (escala log),7.9865

@@ -1,0 +1,5 @@
+Modelo,AUC-PR (validação cruzada),AUC-ROC (teste),AUC-PR (teste),Limiar,Precisão,Recall,F1,Captura no 1º decil,Lift no 1º decil,IC95% AUC-ROC,IC95% AUC-PR
+Regressão Logística,0.0194,0.5432,0.0202,0.594,0.021,0.0684,0.0322,0.1158,1.16,0.503 a 0.582,0.016 a 0.028
+Random Forest (otimizada),0.0209,0.5338,0.0203,0.438,0.0251,0.1842,0.0442,0.1421,1.42,0.491 a 0.576,0.017 a 0.027
+XGBoost (otimizado),0.0198,0.5474,0.0209,0.545,0.0219,0.1421,0.038,0.1368,1.37,0.504 a 0.588,0.017 a 0.027
+LightGBM (otimizado),0.0194,0.5374,0.0227,0.599,0.0294,0.0632,0.0401,0.1421,1.42,0.497 a 0.581,0.017 a 0.036

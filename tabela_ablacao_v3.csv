@@ -1,0 +1,10 @@
+Variante,AUC-PR médio,Desvio entre partes,Diferença para o completo
+Modelo completo,0.0243,0.0065,0.0
+Sem valor da compra,0.0189,0.0012,-0.0054
+Sem logística (entrega),0.0201,0.0024,-0.0042
+Sem estado,0.0199,0.003,-0.0044
+Sem mês da compra,0.0218,0.0037,-0.0025
+Sem durabilidade do produto,0.0188,0.0022,-0.0055
+Sem nota da avaliação,0.0212,0.0033,-0.0031
+Sem texto (bertimbau),0.0226,0.0046,-0.0017
+Sem avaliação (nota e texto),0.02,0.0028,-0.0043

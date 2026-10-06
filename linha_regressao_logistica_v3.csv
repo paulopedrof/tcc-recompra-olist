@@ -1,0 +1,2 @@
+Modelo,AUC-PR (validação cruzada),AUC-ROC (teste),AUC-PR (teste),Limiar,Precisão,Recall,F1,Captura no 1º decil,Lift no 1º decil,IC95% AUC-ROC,IC95% AUC-PR
+Regressão Logística,0.0196,0.5435,0.0201,0.535,0.019,0.3,0.0358,0.1053,1.05,0.502 a 0.582,0.016 a 0.027

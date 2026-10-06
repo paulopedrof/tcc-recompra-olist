@@ -1,0 +1,11 @@
+variavel,shap_medio_abs,correlacao_valor_shap,variavel_legivel
+valor_primeira_compra,0.0549,0.1497,Valor da primeira compra
+atraso_dias,0.0404,0.2066,Antecedência da entrega (dias)
+estado_cod,0.032,0.8231,Estado do cliente
+sent_neg,0.0299,-0.8696,Sentimento negativo (BERTimbau)
+mes_primeira_compra,0.027,-0.2513,Mês da primeira compra
+sent_pos,0.026,-0.8703,Sentimento positivo (BERTimbau)
+nota_primeira,0.0149,0.863,Nota da avaliação
+produto_duravel,0.0085,-0.2863,Produto durável
+tem_texto,0.0018,-0.8456,Avaliação com texto
+flag_atraso,0.0012,-0.4379,Entrega atrasada (sim/não)
